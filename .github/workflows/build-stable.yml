@@ -41,7 +41,7 @@ jobs:
       - name: Build Heltec V2_0 firmware
         run: |
           cd firmware
-          grep -v "-DMESHTASTIC_EXCLUDE_REMOTEHARDWARE=" platformio.ini > platformio.ini.new
+          sed '/-DMESHTASTIC_EXCLUDE_REMOTEHARDWARE=/d' < platformio.ini > platformio.ini.new
           mv platformio.ini platformio.ini.bak
           mv platformio.ini.new platformio.ini
           pio run -e heltec-v2_0
